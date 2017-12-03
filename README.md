@@ -19,33 +19,33 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 ```
 Merge templateFolder baseTemplate &lt;options&gt; requests &lt;requestOption&gt;
 ```
-_templateFolder_ contains template gropus.json
+__templateFolder__ contains template gropus.json
  
-_baseTempalte_ is the template to merge 		
+__baseTempalte__ is the template to merge 		
 
-###Options are									
-_--config -c_
+### Options are									
+__--config -c__
 : load a configuration 					
 												
-_--runners -r_									
+__--runners -r__									
 : specify the number of runner threads		
 
-_--defaultParms_								
+__--defaultParms__								
 : Specify a file that contains parameters to be used with all merges.
 NOTE: This value is ignored if using the request json option.
 The parms files hould take the following json format
 
 ```
-{"parm":["value","value], "parm2 : ["value"]...}
+{"parm1":["value","value], "parm2 : ["value"]...}
 ``` 				
 
---defaultPayload								
+__--defaultPayload__								
 : Specify a file that contains a single default payload
 NOTE: This value is ignored if using the request json option. 							
 												
 ###RequestOption are
 
-json &lt;file&gt;							
+__json &lt;file&gt;__							
 : provide all requests in a single json file formatted as:
 
 ```
@@ -59,20 +59,20 @@ json &lt;file&gt;
 ]}
 ```
 		
-payloadFile &lt;file&gt;					
+__payloadFile &lt;file&gt;__					
 : builds requests based on payload file with 1 request per line			
 NOTE: ignores default payload, uses default parms
 							
-payloadFolder &lt;folder&gt;				
+__payloadFolder &lt;folder&gt;__				
 : builds requests based on payload folder with 1 request per file			
 NOTE: ignores default payload, uses default parms
 							
-parmFile &lt;file&gt; &lt;parm&gt; 				
+__parmFile &lt;file&gt; &lt;parm&gt;__ 				
 : builds requests based on parameters file with 1 request per line.
 The parm name is used to add the parameter to the default parms.
 Uses default payload for all requests.			
 							
-parmFolder &lt;file&gt; &lt;parm&gt;				
+__parmFolder &lt;file&gt; &lt;parm&gt;__				
 : builds requests based on parameters folder with 1 request per file.
 The parm name is used to add the parameter to the default parms for each merge.
 Uses default payload for all requests.			
