@@ -19,17 +19,18 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 ```
 Merge templateFolder baseTemplate &lt;options&gt; requests &lt;requestOption&gt;
 ```
-templateFolder contains template gropus.json 
-baseTempalte is the template to merge 		
-												
+_templateFolder_ contains template gropus.json
+ 
+_baseTempalte_ is the template to merge 		
+
 ###Options are									
---config -c
+_--config -c_
 : load a configuration 					
 												
---runners	-r									
+_--runners -r_									
 : specify the number of runner threads		
 
---defaultParms								
+_--defaultParms_								
 : Specify a file that contains parameters to be used with all merges.
 NOTE: This value is ignored if using the request json option.
 The parms files hould take the following json format
