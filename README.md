@@ -2,19 +2,19 @@
 
 Overview
 
-### What Is IDMU-CLI
+## What Is IDMU-CLI
 The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Command Line utility
 
 ---
 
-### Start Here
+## Start Here
 
 ```
 > git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility.git
 > mvn install
 ```
 
-### Command Line Usage
+## Command Line Usage
 
 ```
 Merge templateFolder baseTemplate <options> requests <requestOption>
@@ -22,7 +22,7 @@ Merge templateFolder baseTemplate <options> requests <requestOption>
 templateFolder contains template gropus.json 
 baseTempalte is the template to merge 		
 												
-####Options are									
+###Options are									
 --config -c
 : load a configuration 					
 												
@@ -42,7 +42,7 @@ The parms files hould take the following json format
 : Specify a file that contains a single default payload
 NOTE: This value is ignored if using the request json option. 							
 												
-####RequestOption are
+###RequestOption are
 
 json <file>							
 : provide all requests in a single json file formatted as:
