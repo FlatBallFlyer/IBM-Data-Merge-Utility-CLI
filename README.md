@@ -20,12 +20,9 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 Merge templateFolder baseTemplate <options> requests <requestOption>
 ```
 __templateFolder__
-
 contains template gropus.json and optional config.json
 
 __baseTempalte__
-
- 
 is the template to merge 		
 
 ### Options are									
