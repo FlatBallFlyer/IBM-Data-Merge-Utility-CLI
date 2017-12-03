@@ -47,7 +47,6 @@ __payloadFolder &lt;folder&gt;__
 builds requests based on a payload folder with 1 request per file, output files will be inputFile.output All merges use the default parameters provided. Any value provided for defaultPayload is ignored.
 
 __parmFile &lt;file&gt; &lt;parm&gt;__
-
 builds requests based on parameters file with 1 request per line, output files will be line#.output. &lt;parm$gt is added to any default parameters with the file line, and the default payload is used for all requests.
 
 __parmFolder &lt;file&gt; &lt;parm&gt;__
