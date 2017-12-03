@@ -10,14 +10,14 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 ## Start Here
 
 ```
-&gt; git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility.git
-&gt; mvn install
+> git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility.git
+> mvn install
 ```
 
 ## Command Line Usage
 
 ```
-Merge templateFolder baseTemplate &lt;options&gt; requests &lt;requestOption&gt;
+Merge templateFolder baseTemplate <options> requests <requestOption>
 ```
 __templateFolder__ contains template gropus.json
  
@@ -33,31 +33,15 @@ __--runners -r__
 __--defaultParms__								
 : Specify a file that contains parameters to be used with all merges.
 NOTE: This value is ignored if using the request json option.
-The parms files hould take the following json format
-
-```
-{"parm1":["value","value], "parm2 : ["value"]...}
-``` 				
 
 __--defaultPayload__								
 : Specify a file that contains a single default payload
 NOTE: This value is ignored if using the request json option. 							
 												
-###RequestOption are
+### RequestOption is one of:
 
 __json &lt;file&gt;__							
-: provide all requests in a single json file formatted as:
-
-```
-{"requests":[
-	{	"parms":{parameters}, 
-		"payload":"aPayload", 
-		"output":"fileName"
-	},
-	{....
-	}
-]}
-```
+: provide all requests in a single json file
 		
 __payloadFile &lt;file&gt;__					
 : builds requests based on payload file with 1 request per line			
@@ -77,6 +61,30 @@ __parmFolder &lt;file&gt; &lt;parm&gt;__
 The parm name is used to add the parameter to the default parms for each merge.
 Uses default payload for all requests.			
 
+---
+
+## JSON File Formats
+The parameters objects are serialized to HashMap<String,String[]>
+
+```
+{
+	"parm1": ["value","value], 
+	"parm2 : ["value"]...
+}
+```
+
+The requests json file is based on
+```
+{"requests":[
+	{	"parms":{parameters}, 
+		"payload":"aPayload", 
+		"output":"fileName"
+	},
+	{....
+	}
+]}
+```
+ 	
 ### See Also
 1. [IDMU Project](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility)
 
