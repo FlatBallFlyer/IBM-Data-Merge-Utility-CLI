@@ -19,37 +19,46 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 ```
 Merge templateFolder baseTemplate <options> requests <requestOption>
 ```
-__templateFolder__ 
+__templateFolder__
 contains template gropus.json and optional config.json
  
-__baseTempalte__ 
+__baseTempalte__
+
 is the template to merge 		
 
 ### Options are									
 __--runners -r__
-: Specify the number of runner threads		
+
+Specify the number of runner threads		
 
 __--defaultParms__
-: Specify a file that contains parameters to be used with all merges.
+
+Specify a file that contains parameters to be used with all merges.
 
 __--defaultPayload__
-: Specify a file that contains a single default payload
+
+Specify a file that contains a single default payload
 												
 ### RequestOption is one of:
 
 __json &lt;file&gt;__
-: provide all requests in a single json file
-		
+
+Provide all requests in a single json file
+
 __payloadFile &lt;file&gt;__
-: builds requests based on payload file with 1 request per line, output files will be line#.output. All merges use the default parameters provided. Any value provided for defaultPayload is ignored.
-							
+
+builds requests based on payload file with 1 request per line, output files will be line#.output. All merges use the default parameters provided. Any value provided for defaultPayload is ignored.
+
 __payloadFolder &lt;folder&gt;__
+
 : builds requests based on a payload folder with 1 request per file, output files will be inputFile.output All merges use the default parameters provided. Any value provided for defaultPayload is ignored.
-							
+
 __parmFile &lt;file&gt; &lt;parm&gt;__
+
 : builds requests based on parameters file with 1 request per line, output files will be line#.output. &lt;parm$gt is added to any default parameters with the file line, and the default payload is used for all requests.
 
 __parmFolder &lt;file&gt; &lt;parm&gt;__
+
 : builds requests based on parameters folder with 1 request per file, output files will be inputFile.output. &lt;parm$gt is added to any default parameters with the file contents, and the default payload is used for all requests.
 
 ---
