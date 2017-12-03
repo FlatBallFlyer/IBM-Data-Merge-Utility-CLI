@@ -32,10 +32,12 @@ __--runners -r__
 
 __--defaultParms__								
 : Specify a file that contains parameters to be used with all merges.
+
 NOTE: This value is ignored if using the request json option.
 
 __--defaultPayload__								
 : Specify a file that contains a single default payload
+
 NOTE: This value is ignored if using the request json option. 							
 												
 ### RequestOption is one of:
@@ -44,22 +46,24 @@ __json &lt;file&gt;__
 : provide all requests in a single json file
 		
 __payloadFile &lt;file&gt;__					
-: builds requests based on payload file with 1 request per line			
+: builds requests based on payload file with 1 request per line, output files will be line#.output
+			
 NOTE: ignores default payload, uses default parms
 							
 __payloadFolder &lt;folder&gt;__				
-: builds requests based on payload folder with 1 request per file			
+: builds requests based on payload folder with 1 request per file, output files will be inputFile.output
+			
 NOTE: ignores default payload, uses default parms
 							
 __parmFile &lt;file&gt; &lt;parm&gt;__ 				
-: builds requests based on parameters file with 1 request per line.
-The parm name is used to add the parameter to the default parms.
-Uses default payload for all requests.			
+: builds requests based on parameters file with 1 request per line, output files will be line#.output
+
+The parm name is used to add the parameter to the default parms, and the default payload is used for all requests.			
 							
 __parmFolder &lt;file&gt; &lt;parm&gt;__				
-: builds requests based on parameters folder with 1 request per file.
-The parm name is used to add the parameter to the default parms for each merge.
-Uses default payload for all requests.			
+: builds requests based on parameters folder with 1 request per file, output files will be inputFile.output
+
+The parm name is used to add the parameter to the default parms for each merge, and the default payload is used for all requests.			
 
 ---
 
