@@ -10,14 +10,14 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 ## Start Here
 
 ```
-> git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility.git
-> mvn install
+&gt; git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility.git
+&gt; mvn install
 ```
 
 ## Command Line Usage
 
 ```
-Merge templateFolder baseTemplate <options> requests <requestOption>
+Merge templateFolder baseTemplate &lt;options&gt; requests &lt;requestOption&gt;
 ```
 templateFolder contains template gropus.json 
 baseTempalte is the template to merge 		
@@ -44,7 +44,7 @@ NOTE: This value is ignored if using the request json option.
 												
 ###RequestOption are
 
-json <file>							
+json &lt;file&gt;							
 : provide all requests in a single json file formatted as:
 
 ```
@@ -58,20 +58,20 @@ json <file>
 ]}
 ```
 		
-payloadFile <file>					
+payloadFile &lt;file&gt;					
 : builds requests based on payload file with 1 request per line			
 NOTE: ignores default payload, uses default parms
 							
-payloadFolder <folder>				
+payloadFolder &lt;folder&gt;				
 : builds requests based on payload folder with 1 request per file			
 NOTE: ignores default payload, uses default parms
 							
-parmFile <file> <parm> 				
+parmFile &lt;file&gt; &lt;parm&gt; 				
 : builds requests based on parameters file with 1 request per line.
 The parm name is used to add the parameter to the default parms.
 Uses default payload for all requests.			
 							
-parmFolder <file> <parm>				
+parmFolder &lt;file&gt; &lt;parm&gt;				
 : builds requests based on parameters folder with 1 request per file.
 The parm name is used to add the parameter to the default parms for each merge.
 Uses default payload for all requests.			
