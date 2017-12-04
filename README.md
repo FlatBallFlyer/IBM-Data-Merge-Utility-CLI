@@ -26,14 +26,17 @@ __baseTempalte__
 is the template to merge 		
 
 ### Options are									
-__--runners -r__
+__--runners -r__&lt;number&gt;
 Specify the number of runner threads		
 
-__--defaultParms__
+__--defaultParms__&lt;file&gt;
 Specify a file that contains parameters to be used with all merges.
 
-__--defaultPayload__
+__--defaultPayload__&lt;file&gt;
 Specify a file that contains a single default payload
+												
+__--patience__&lt;minutes&gt;
+Specify a timeout for multi-threaded runners
 												
 ### RequestOption is one of:
 

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,19 +36,19 @@ public class Merge implements Runnable {
 	+ "	baseTempalte is the template to merge 		\n"
 	+ "												\n"
 	+ "Options are									\n"
-	+ "--config -c									\n"
-	+ "		load a configuration 					\n"
-	+ "												\n"
-	+ "--runners	-r									\n"
+	+ "--runners -r									\n"
 	+ "		specify the number of runner threads		\n"
 	+ "												\n"
-	+ "--defaultParms								\n"
+	+ "--defaultParms <file>							\n"
 	+ "		specify a file that contains parameters	\n"
 	+ "		to be used with all merges. 				\n"
 	+ "												\n"
-	+ "--defaultPayload								\n"
+	+ "--defaultPayload	<file>						\n"
 	+ "		specify a file that contains a single	\n"
 	+ "		default payload 							\n"
+	+ "												\n"
+	+ "--patience <minutes>							\n"
+	+ "		multi-threaded time-out					\n"
 	+ "												\n"
 	+ "RequestOption are								\n"
 	+ "			json <file>							\n"
@@ -81,7 +80,7 @@ public class Merge implements Runnable {
 	private Cache cache;
 	private Gson gson = new GsonBuilder().create();
 	private int runners = 1;
-	private long patience = 1000000000;
+	private long patience = 1000 * 60 * 60;
 	private String templateName = "";
 	private File templatesFolder;
 	private Parms defaultParms = new Parms();
@@ -94,23 +93,26 @@ public class Merge implements Runnable {
 	 * @throws Exception on processing errors
 	 */
 	public Merge(String[] args) throws Exception {
+		Config config;
 		this.templatesFolder	= new File(args[0]);
+		File configFile = new File(templatesFolder.getAbsolutePath() + "/" + "config.json");
+		if (configFile.exists()) {
+			config = new Config(configFile);
+			System.out.println("Using " + configFile.getPath());
+		} else {
+			config = new Config();
+		}
+		
 		if (!templatesFolder.exists()) throw new Exception("Template Folder Missing:" + templatesFolder.getPath());
 		if (!templatesFolder.isDirectory()) throw new Exception("Template Folder Missing:" + templatesFolder.getPath());
-		this.cache = new Cache(templatesFolder);
-		
+		this.cache = new Cache(config, templatesFolder);
+	
 		this.templateName 	= args[1];
 		if (templateName.isEmpty()) throw new Exception("Template name required:" + templateName);
 		if (!cache.contains(templateName)) throw new Exception("Template not in cache:" + templateName);
 		
 		for (int x = 2; x < args.length; x++) {
 			switch (args[x]) {
-				case "--config" : 
-				case "-c" : 
-					File configFile = new File(args[++x]);
-					if (!configFile.exists()) new Exception("Config file missing:" + configFile.getPath());
-					Config.load(configFile);
-					break;
 				case "--runners" :
 				case "-r" :
 					this.runners = Integer.valueOf(args[++x]);
@@ -128,6 +130,9 @@ public class Merge implements Runnable {
 					if (!defaultPayload.exists()) throw new Exception("Default Payload missing:" + defaultPayload.getPath());
 					this.defaultPayload  = new String(Files.readAllBytes(defaultPayload.toPath()), "ISO-8859-1");
 					break;
+				case "--patience" :
+					this.patience = 1000 * 60 * Long.valueOf(args[++x]);
+					break;
 				case "requests" :
 					switch (args[++x]) {
 					case "json" :
@@ -141,10 +146,11 @@ public class Merge implements Runnable {
 						File payloadFile = new File(args[++x]);
 						if (!payloadFile.exists()) throw new Exception("Payload File missing:" + payloadFile.getPath());
 						String payloadFileContents = new String(Files.readAllBytes(payloadFile.toPath()), "ISO-8859-1");
+						int payLine = 0;
 						for (String line : payloadFileContents.split("\n")) {
 							Request req = new Request();
-							req.parameters = this.defaultParms;
-							req.payload = line;
+							req.setPayload(line);
+							req.setOutputFile("line" + Integer.toString(payLine++) + ".output");
 							this.requests.add(req);
 						}
 						break;
@@ -154,8 +160,8 @@ public class Merge implements Runnable {
 						if (!payloadFolder.isDirectory()) throw new Exception("Payload Foler missing:" + payloadFolder.getPath());
 						for (File file : payloadFolder.listFiles()) {
 							Request req = new Request();
-							req.parameters = this.defaultParms;
-							req.payload = new String(Files.readAllBytes(file.toPath()), "ISO-8859-1");
+							req.setPayload(file);
+							req.setOutputFile(file.getPath() + ".output");
 							this.requests.add(req);
 						}
 						break;
@@ -165,15 +171,12 @@ public class Merge implements Runnable {
 						if (this.parmName.isEmpty()) throw new Exception("Parameter Name required!");
 						if (!parmFile.exists()) throw new Exception("Parameters File missing:" + parmFile.getPath());
 						String parmFileContents = new String(Files.readAllBytes(parmFile.toPath()), "ISO-8859-1");
+						int parmLine = 0;
 						for (String line : parmFileContents.split("\n")) {
-							String[] value = {line};
 							Request req = new Request();
-							req.payload = this.defaultPayload;
-							Parms newParms = new Parms();
-							newParms.put(parmName, value);
-							for (String name : this.defaultParms.keySet()) {
-								newParms.putIfAbsent(name, this.defaultParms.get(name));
-							}
+							req.setPayload(this.defaultPayload);
+							req.setParameter(parmName, line);
+							req.setOutputFile("line" + Integer.toString(parmLine++) + ".output");
 							this.requests.add(req);
 						}
 						break;
@@ -185,14 +188,9 @@ public class Merge implements Runnable {
 						if (!parmFolder.isDirectory()) throw new Exception("Parameter Foler missing:" + parmFolder.getPath());
 						for (File file : parmFolder.listFiles()) {
 							Request req = new Request();
-							req.payload = this.defaultPayload;
-							Parms newParms = gson.fromJson(
-					        		new String(Files.readAllBytes(file.toPath()), "ISO-8859-1"),
-					        		Parms.class );
-							for (String name : this.defaultParms.keySet()) {
-								newParms.putIfAbsent(name, this.defaultParms.get(name));
-							}
-							req.parameters = newParms;
+							req.setPayload(this.defaultPayload);
+							req.setParameters(file);
+							req.setOutputFile(file.getPath() + ".output");
 							this.requests.add(req);
 						}
 						break;
@@ -242,16 +240,15 @@ public class Merge implements Runnable {
 			Request req = requests.nextRequest();
 			if (req != null) {
 				try {
-					Template merged = new Merger(cache, templateName, req.parameters, req.payload).merge();
-					merged.getMergedOutput().streamValue(new BufferedOutputStream(new FileOutputStream(req.outputFile)));
+					Template merged = new Merger(cache, templateName, 
+							req.getParameters(this.defaultParms), 
+							req.getPayLoad())
+						.merge();
+					merged.getMergedOutput().streamValue(new BufferedOutputStream(new FileOutputStream(req.getOutputFile())));
 				} catch (Throwable t) {
 					System.err.println("Execption during Merge:" + t.getMessage());
 				}
 			}
 		}
-	}
-
-	private class Parms extends HashMap<String, String[]> {
-		private static final long serialVersionUID = 1L;
 	}
 }
