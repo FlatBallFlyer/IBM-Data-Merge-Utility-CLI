@@ -3,6 +3,7 @@ package com.ibm.util.merge.cli;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
@@ -86,6 +87,7 @@ public class Merge implements Runnable {
 	private Parms defaultParms = new Parms();
 	private String defaultPayload = "";
 	private String parmName;
+	private File output = new File(".");
 
 	/**
 	 * Construct a merge engine from the arguments provided
@@ -130,6 +132,12 @@ public class Merge implements Runnable {
 					if (!defaultPayload.exists()) throw new Exception("Default Payload missing:" + defaultPayload.getPath());
 					this.defaultPayload  = new String(Files.readAllBytes(defaultPayload.toPath()), "ISO-8859-1");
 					break;
+				case "--output" :
+					File outputFolder = new File(args[++x]);
+					if (!outputFolder.exists()) throw new Exception("Output folder missing:" + outputFolder.getPath());
+					if (!outputFolder.isDirectory()) throw new Exception("Output folder isn't a folder!" + outputFolder.getPath());
+					this.output = outputFolder;
+					break;
 				case "--patience" :
 					this.patience = 1000 * 60 * Long.valueOf(args[++x]);
 					break;
@@ -154,14 +162,14 @@ public class Merge implements Runnable {
 							this.requests.add(req);
 						}
 						break;
-					case "payloadFoler" :
+					case "payloadFolder" :
 						File payloadFolder = new File(args[++x]);
 						if (!payloadFolder.exists()) throw new Exception("Payload Foler missing:" + payloadFolder.getPath());
 						if (!payloadFolder.isDirectory()) throw new Exception("Payload Foler missing:" + payloadFolder.getPath());
 						for (File file : payloadFolder.listFiles()) {
 							Request req = new Request();
 							req.setPayload(file);
-							req.setOutputFile(file.getPath() + ".output");
+							req.setOutputFile(file.getName() + ".output");
 							this.requests.add(req);
 						}
 						break;
@@ -206,6 +214,7 @@ public class Merge implements Runnable {
 	 * @throws InterruptedException 
 	 */
 	public void loadRunners() throws InterruptedException {
+		System.out.println("Starting " + Integer.toString(runners) + " threads");
 		// Launch Runner Threads
 		ArrayList<Thread> threads = new ArrayList<Thread>();
 		for (int x = 0; x < runners; x++) {
@@ -216,10 +225,12 @@ public class Merge implements Runnable {
 		
 		// Wait for threads finish - till out of patience
 		long startTime = System.currentTimeMillis();
+		System.out.print("Requests Remaining: " + Integer.toString(requests.size()));
 		while (((System.currentTimeMillis() - startTime) < patience) && threads.size() > 0) {
 			for (int i = 0 ; i < threads.size(); i++) {
+				System.out.print("\rRequests Remaining: " + Integer.toString(requests.size()));
 				Thread t = threads.get(i);
-				t.join(1000);
+				t.join(100);
 				if (!t.isAlive()) threads.remove(i);
 			}
 		}
@@ -229,7 +240,7 @@ public class Merge implements Runnable {
 			t.interrupt();
 			t.join();
 		}
-		
+		System.out.println("\rRequests Remaining: " + Integer.toString(requests.size()));		
 	}
 	
 	/**
@@ -242,13 +253,23 @@ public class Merge implements Runnable {
 				try {
 					Template merged = new Merger(cache, templateName, 
 							req.getParameters(this.defaultParms), 
-							req.getPayLoad())
+							req.getPayLoad(this.defaultPayload))
 						.merge();
-					merged.getMergedOutput().streamValue(new BufferedOutputStream(new FileOutputStream(req.getOutputFile())));
+					OutputStream stream = new BufferedOutputStream(new FileOutputStream(this.output + "/" + req.getOutputFile()));
+					merged.getMergedOutput().streamValue(stream);
+					stream.close();
 				} catch (Throwable t) {
 					System.err.println("Execption during Merge:" + t.getMessage());
 				}
 			}
 		}
+	}
+	
+	public File getOutput() {
+		return this.output;
+	}
+	
+	public Requests getRequests() {
+		return this.requests;
 	}
 }

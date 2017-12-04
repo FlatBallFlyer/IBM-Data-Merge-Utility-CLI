@@ -17,7 +17,7 @@ The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Co
 ## Command Line Usage
 
 ```
-Merge templateFolder baseTemplate <options> requests <requestOption>
+java -cp idmu-cli.jar Main templateFolder baseTemplate <options> requests <requestOption>
 ```
 __templateFolder__
 contains template gropus.json and optional config.json
@@ -34,6 +34,9 @@ Specify a file that contains parameters to be used with all merges.
 
 __--defaultPayload__&lt;file&gt;
 Specify a file that contains a single default payload
+												
+__--output__&lt;folder&gt;
+Specify a folder for output
 												
 __--patience__&lt;minutes&gt;
 Specify a timeout for multi-threaded runners

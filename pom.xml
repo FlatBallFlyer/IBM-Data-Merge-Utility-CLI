@@ -39,7 +39,7 @@
         <configuration>
           <show>public</show>
           <nohelp>true</nohelp>
-          <doctitle>IBM Data Merge Utility</doctitle>
+          <doctitle>IBM Data Merge Utility - CLS</doctitle>
           <overview>WebContent/overview.html</overview>
           <javadocDirectory>/src/main/java</javadocDirectory>
         </configuration>

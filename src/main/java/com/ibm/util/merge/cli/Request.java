@@ -18,11 +18,15 @@ public class Request {
 	private File payLoadFile;
 	private String outputFile = "";
 
-	public String getPayLoad() throws UnsupportedEncodingException, IOException {
+	public String getPayLoad(String defaultPayload) throws UnsupportedEncodingException, IOException {
 		if (null != this.payLoadFile) {
 			this.payload = new String(Files.readAllBytes(this.payLoadFile.toPath()), "ISO-8859-1");
 		}
-		return this.payload;
+		if (this.payload.isEmpty()) {
+			return defaultPayload;
+		} else {
+			return this.payload;
+		}
 	}
 	
 	public HashMap<String, String[]> getParameters(HashMap<String, String[]> defaults) throws UnsupportedEncodingException, IOException {
