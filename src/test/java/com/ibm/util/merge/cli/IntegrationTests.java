@@ -7,14 +7,14 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MergeTest {
+public class IntegrationTests {
 
 	@Before
 	public void setUp() throws Exception {
 	}
 
 	@Test
-	public void testMergeJson() throws Exception {
+	public void testCloudantMergeJson() throws Exception {
 		String[] argc = {
 				"src/test/resources/test1", 
 				"test..", 
@@ -37,7 +37,7 @@ public class MergeTest {
 	}
 
 	@Test
-	public void testMergeParmFile() throws Exception {
+	public void testCloudantMergeParmFile() throws Exception {
 		String[] argc = {
 				"src/test/resources/test1", 
 				"test..", 
@@ -93,25 +93,6 @@ public class MergeTest {
 	}
 
 	@Test
-	public void testMergePayloadFolder() throws Exception {
-		String[] argc = {
-				"src/test/resources/test2", 
-				"test.aToB.", 
-				"requests", 
-				"payloadFolder", 
-				"src/test/resources/test2/a"};
-		Merge merge = new Merge(argc);
-		Requests reqs = merge.getRequests();
-		assertEquals(20, reqs.size());
-		Request req = reqs.get(0);
-		assertEquals("1.txt.output", req.getOutputFile());
-		req = reqs.get(1);
-		assertEquals("10.txt.output", req.getOutputFile());
-		req = reqs.get(11);
-		assertEquals("2.txt.output", req.getOutputFile());
-	}
-
-	@Test
 	public void testRun1() throws Exception {
 		String[] argc = {
 				"src/test/resources/test1", 
@@ -152,10 +133,10 @@ public class MergeTest {
 				"--runners", 
 				"5", 
 				"--output", 
-				"~/testing/output", 
+				"src/test/resources/test2/output", 
 				"requests", 
 				"payloadFolder", 
-				"~/testing/b"
+				"src/test/resources/test2/b"
 		};
 		Merge merge = new Merge(argc);
 		merge.loadRunners();

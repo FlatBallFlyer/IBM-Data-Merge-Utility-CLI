@@ -1,63 +1,54 @@
 # IBM Data Merge Utility v4.0.0 - CLI
 
-Overview
-
 ## What Is IDMU-CLI
-The IBM Data Merge Utility CLI exposes the IBM Data Merge Utility v4.0.0 as a Command Line utility
+The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatballflyer.github.io/IBM-Data-Merge-Utility/) as a Command Line utility
 
 ---
 
 ## Start Here
 
 ```
-> git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility.git
-> mvn install
+git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility-CLI.git
+mvn install
 ```
 
 ## Command Line Usage
 
 ```
-java -cp idmu-cli.jar Main templateFolder baseTemplate <options> requests <requestOption>
+mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
+export CLASSPATH=$(< cp.txt):$(pwd)/target/idmu-cli-4.0.0-SNAPSHOT.jar
+
+java com.ibm.util.merge.cli.Merge templateName mergeFolder <options>
+ex: java com.ibm.util.merge.cli.Merge root.. . --run --runners 20
 ```
-__templateFolder__
-contains template gropus.json and optional config.json
+__templateName__
+- The short name of the base template to use for merges 		
 
-__baseTempalte__
-is the template to merge 		
+__mergeFolder__
+- A folder with merge input. The contents of the merge folder should be:
+  - templates: A directory that contains template group.json files 
+  - output: A directory where all output will be created
+  - config.json: Optional configuration file
+  - parameters.json: Optional default parameters
+  - payload.txt: Optional default payload
+- And One of the following, if more than one of these exists the first is used.
+  - requests.json - all requests in a single json file
+  - payloadFolder - contains request payloads (1 per file) uses default parameters, output file name == input file name 
+  - payloadFile.txt - contains request payloads (1 per line) uses default parameters, output file name == lineXX.output
+  - parametersFolder - contains request parameters (1 per file) uses default payload, output file name == input file name
+  - parametersFile.txt - contains request parameters (1 per file) uses default parameters, output file name == line##.output
 
-### Options are									
-__--runners -r__&lt;number&gt;
+__options__									
+- __- -runners  -r__ &lt;number&gt;
 Specify the number of runner threads		
-
-__--defaultParms__&lt;file&gt;
-Specify a file that contains parameters to be used with all merges.
-
-__--defaultPayload__&lt;file&gt;
-Specify a file that contains a single default payload
-												
-__--output__&lt;folder&gt;
-Specify a folder for output
-												
-__--patience__&lt;minutes&gt;
+- __- -run__ 
+Start processing without a confirmation prompt		
+- __- -patience__ &lt;minutes&gt;
 Specify a timeout for multi-threaded runners
+- __- -parameter__ &lt;name&gt;
+Specify a parameter name for use with parametersFolder / parametersFile. 
+The default parameter used is "idmuCliParm" if none is provided.
 												
-### RequestOption is one of:
-
-__json &lt;file&gt;__
-Provide all requests in a single json file
-
-__payloadFile &lt;file&gt;__
-builds requests based on payload file with 1 request per line, output files will be line#.output. All merges use the default parameters provided. Any value provided for defaultPayload is ignored.
-
-__payloadFolder &lt;folder&gt;__
-builds requests based on a payload folder with 1 request per file, output files will be inputFile.output All merges use the default parameters provided. Any value provided for defaultPayload is ignored.
-
-__parmFile &lt;file&gt; &lt;parm&gt;__
-builds requests based on parameters file with 1 request per line, output files will be line#.output. &lt;parm$gt is added to any default parameters with the file line, and the default payload is used for all requests.
-
-__parmFolder &lt;file&gt; &lt;parm&gt;__
-builds requests based on parameters folder with 1 request per file, output files will be inputFile.output. &lt;parm$gt is added to any default parameters with the file contents, and the default payload is used for all requests.
-
 ---
 
 ## JSON File Formats
