@@ -24,7 +24,7 @@ ex: java com.ibm.util.merge.cli.Merge root.. . --run --runners 20
 see src/test/resources/perfTest.sh for some samples
 ```
 ## Comand Line
-com.ibm.util.merge.cli.Merge templateName mergeFolder options
+com.ibm.util.merge.cli.Merge __templateName__ __mergeFolder__ __options__
 
 __templateName__
 - The short name of the base template to use for merges 		
