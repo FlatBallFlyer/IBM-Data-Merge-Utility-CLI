@@ -63,6 +63,8 @@ public class Merge {
 	+ "\n"
 	+ "Example\n"
 	+ "java com.ibm.util.merge.cli.Merge my.test. /bigJob --runners 20 \n"
+	+ "\n"
+	+ "See https://flatballflyer.github.io/IBM-Data-Merge-Utility-CLI/ for more information\n"
 	);
 	}
 }

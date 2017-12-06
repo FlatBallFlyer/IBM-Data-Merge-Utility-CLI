@@ -15,6 +15,12 @@ import com.ibm.util.merge.Config;
 import com.ibm.util.merge.Merger;
 import com.ibm.util.merge.template.Template;
 
+/**
+ * Multi-Threaded Merge Engine 
+ * 
+ * @author flatballflyer
+ *
+ */
 public class Engine implements Runnable {
 	private Gson gson = new GsonBuilder().create();
 	private boolean confirm = true;

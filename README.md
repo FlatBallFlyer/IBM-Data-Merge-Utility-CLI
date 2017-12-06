@@ -19,7 +19,9 @@ mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
 export CLASSPATH=$(< cp.txt):$(pwd)/target/idmu-cli-4.0.0-SNAPSHOT.jar
 
 java com.ibm.util.merge.cli.Merge templateName mergeFolder <options>
+
 ex: java com.ibm.util.merge.cli.Merge root.. . --run --runners 20
+see src/test/resources/perfTest.sh for some samples
 ```
 __templateName__
 - The short name of the base template to use for merges 		
