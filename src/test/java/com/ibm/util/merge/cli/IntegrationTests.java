@@ -14,7 +14,7 @@ public class IntegrationTests {
 	}
 
 	@Test
-	public void testCloudantMergeJson() throws Exception {
+	public void testCloudantEngineJson() throws Exception {
 		String[] argc = {
 				"src/test/resources/test1", 
 				"test..", 
@@ -23,7 +23,7 @@ public class IntegrationTests {
 				"requests", 
 				"json", 
 				"src/test/resources/test1/requests.json"};
-		Merge merge = new Merge(argc);
+		Engine merge = new Engine(argc);
 		Requests reqs = merge.getRequests();
 		assertEquals(10, reqs.size());
 		Request req = reqs.get(0);
@@ -37,7 +37,7 @@ public class IntegrationTests {
 	}
 
 	@Test
-	public void testCloudantMergeParmFile() throws Exception {
+	public void testCloudantEngineParmFile() throws Exception {
 		String[] argc = {
 				"src/test/resources/test1", 
 				"test..", 
@@ -48,7 +48,7 @@ public class IntegrationTests {
 				"src/test/resources/test1/parmfile.txt",
 				"idcustomer"
 		};
-		Merge merge = new Merge(argc);
+		Engine merge = new Engine(argc);
 		Requests reqs = merge.getRequests();
 		assertEquals(10, reqs.size());
 		Request req = reqs.get(0);
@@ -70,7 +70,7 @@ public class IntegrationTests {
 	}
 
 	@Test
-	public void testMergeParmFolder() throws Exception {
+	public void testEngineParmFolder() throws Exception {
 		String[] argc = {
 				"src/test/resources/test1", 
 				"test..", 
@@ -79,7 +79,7 @@ public class IntegrationTests {
 				"requests", 
 				"json", 
 				"src/test/resources/test1/requests.json"};
-		Merge merge = new Merge(argc);
+		Engine merge = new Engine(argc);
 		Requests reqs = merge.getRequests();
 		assertEquals(10, reqs.size());
 		Request req = reqs.get(0);
@@ -106,7 +106,7 @@ public class IntegrationTests {
 				"src/test/resources/test1/parmfile.txt",
 				"idcustomer"
 		};
-		Merge merge = new Merge(argc);
+		Engine merge = new Engine(argc);
 		merge.loadRunners();
 	}
 
@@ -121,7 +121,7 @@ public class IntegrationTests {
 				"payloadFolder", 
 				"src/test/resources/test2/a"
 		};
-		Merge merge = new Merge(argc);
+		Engine merge = new Engine(argc);
 		merge.loadRunners();
 	}
 
@@ -138,7 +138,7 @@ public class IntegrationTests {
 				"payloadFolder", 
 				"src/test/resources/test2/b"
 		};
-		Merge merge = new Merge(argc);
+		Engine merge = new Engine(argc);
 		merge.loadRunners();
 	}
 
