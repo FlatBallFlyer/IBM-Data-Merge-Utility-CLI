@@ -85,5 +85,9 @@ The requests json file is based on
  	
 ### See Also
 1. [IDMU Project](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility)
+1. [Template Json Schema](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility/blob/master/WebContent/jsonSchema/schema.template.json)
+1. [Config Json Schema](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility/blob/master/WebContent/jsonSchema/schema.config.json)
+1. [Sample Config Json](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility/blob/master/src/test/resources/config.sample.json)
+1. [Sample Template Json](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility/blob/master/src/test/resources/system.sample.json)
 
 ---
