@@ -1,8 +1,8 @@
 echo Cleanup from previous run
 ./cleanup.sh
 
-echo Use data from MySql to generate a tar with 20k requests in it - typically taks 6-7 seconds
-java com.ibm.util.merge.cli.Merge test.batch. ./jsonFromMySql/ --run 
+echo Generate a tar with 20k requests in it - typically taks 2-5 seconds
+java com.ibm.util.merge.cli.Merge test.batch. ./generatePerfData/ --run 
 
 echo Extract the testing data
 cd perf/payloadFolder/
