@@ -17,3 +17,5 @@ mkdir  ./perf/xmlGenerated
 rm -rf ./perf/jsonGenerated
 mkdir  ./perf/jsonGenerated
 
+rm -rf ./generatePerfData/output
+mkdir  ./generatePerfData/output

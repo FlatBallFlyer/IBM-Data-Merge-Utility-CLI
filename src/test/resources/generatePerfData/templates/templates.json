@@ -124,7 +124,7 @@
         "back" : ">"
       },
       "description" : "Generate Customer Json and XML Files for Transformation Performance Testing",
-      "content" : "Batch: <batch>\n<bookmark=\"customers\" group=\"test\" template=\"customer\"> \n<batch>",
+      "content" : "Batch: <batch>\n<bookmark=\"customers\" group=\"test\" template=\"customer\"> ",
       "contentType" : 2,
       "contentDisposition" : 2,
       "contentEncoding" : 4,
@@ -246,7 +246,7 @@
         "back" : ">"
       },
       "description" : "Create a customre GUID and save the JSON and XML Files",
-      "content" : "Guid: <guid>\n<bookmark=\"customers\" group=\"test\" template=\"customerJson\"> \n<bookmark=\"customers\" group=\"test\" template=\"customerXml\"> \n<batch>",
+      "content" : "<bookmark=\"customers\" group=\"test\" template=\"customerJson\"><bookmark=\"customers\" group=\"test\" template=\"customerXml\">",
       "contentType" : 2,
       "contentDisposition" : 2,
       "contentEncoding" : 4,
@@ -412,7 +412,7 @@
           "type" : 5,
           "name" : "Save Customer File",
           "filename" : "<batch>.<custId>.json",
-          "clearAfter" : false
+          "clearAfter" : true
         }
       ]
     },
@@ -590,7 +590,7 @@
           "type" : 5,
           "name" : "Save Customer File",
           "filename" : "{batch}.{custId}.xml",
-          "clearAfter" : false
+          "clearAfter" : true
         }
       ]
     },
