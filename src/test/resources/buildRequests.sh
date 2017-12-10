@@ -8,4 +8,6 @@ do
 ((counter++))
 done
 echo -n "\"end\"]}" >> ./generatePerfData/parameters.json
-
+let "r = $T * 50"
+let "t = $r / 2000"
+echo Generating $r XML and $r JSON requests - eta $t seconds to tar file

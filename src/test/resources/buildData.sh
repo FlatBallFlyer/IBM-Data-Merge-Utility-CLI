@@ -1,4 +1,4 @@
-echo Generate a tar with XML and JSON requests in it - about 10k requests / second
+echo Now Generating a tar with XML and JSON requests in it 
 java com.ibm.util.merge.cli.Merge test.. ./generatePerfData/ --run 
 
 echo Extract the json testing data
