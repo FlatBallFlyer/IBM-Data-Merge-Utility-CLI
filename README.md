@@ -7,8 +7,6 @@ The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatb
 
 ## Requirements
 1. maven package manager - see (https://maven.apache.org/install.html)
-1. gpg - see (https://gnupg.org/download/) 
-if your new to gpg I suggest this howto - (http://central.sonatype.org/pages/working-with-pgp-signatures.html)
 
 ## Start Here
 
