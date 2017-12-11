@@ -71,14 +71,14 @@ The parameters objects are serialized to HashMap<String,String[]>
 
 The requests json file is based on
 ```
-{"requests":[
+[
 	{	"parms":{parameters}, 
 		"payload":"aPayload", 
 		"output":"fileName"
 	},
 	{....
 	}
-]}
+]
 ```
  	
 ### See Also

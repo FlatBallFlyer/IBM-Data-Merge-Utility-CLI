@@ -1,0 +1,6 @@
+[
+		{	"parms": {"parms": {"parameter1":["value1","value2"],"parameter2":[]}}, 
+			"payload":"", 
+			"outputFile":"output.txt"
+		}
+	]

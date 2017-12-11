@@ -1,0 +1,9 @@
+{
+  "tempFolder" : "./output/",
+  "envVars" : {
+    "test.HOST" : "localhost",
+    "test.PORT" : "8383",
+    "test.USER" : "",
+    "test.PW"   : ""
+  }
+}

@@ -15,7 +15,7 @@ public class MergeUnitTest {
 	public void testMergePayloadFolder() throws Exception {
 		String[] argc = {
 				"test.aToB.", 
-				"src/test/resources/jsonToXml" 
+				"src/test/resources/functional/jsonToXml" 
 		};
 		Engine merge = new Engine(argc);
 		Requests reqs = merge.getRequests();
@@ -24,4 +24,17 @@ public class MergeUnitTest {
 		assertTrue(req.getOutputFile().endsWith(".txt.output"));
 	}
 
+	@Test
+	public void testMergeRequestJson() throws Exception {
+		String[] argc = {
+				"test..", 
+				"src/test/resources/functional/simple" 
+		};
+		Engine merge = new Engine(argc);
+		Requests reqs = merge.getRequests();
+		assertEquals(1, reqs.size());
+		Request req = reqs.get(0);
+		assertEquals("output.txt", req.getOutputFile());
+	}
+	
 }

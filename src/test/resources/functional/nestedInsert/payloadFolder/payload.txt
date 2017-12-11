@@ -1,0 +1,27 @@
+[
+	{
+		"name": "row1",
+		"type": "a",
+		"value": "value1"
+	},
+	{
+		"name": "row2",
+		"type": "a",
+		"value": "value2"
+	},
+	{
+		"name": "row3",
+		"type": "b",
+		"value": "value3"
+	},
+	{
+		"name": "row4",
+		"type": "b",
+		"value": "value4"
+	},
+	{
+		"name": "rowX",
+		"type": "x",
+		"value": "valueX"
+	}
+]

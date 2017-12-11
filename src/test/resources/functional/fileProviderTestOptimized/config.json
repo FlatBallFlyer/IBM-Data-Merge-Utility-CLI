@@ -1,0 +1,6 @@
+{
+  "tempFolder" : "./output",
+  "envVars" : {
+    "testFiles.PATH" : "../../datafiles"
+  }
+}

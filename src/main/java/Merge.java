@@ -1,5 +1,6 @@
-package com.ibm.util.merge.cli;
 
+
+import com.ibm.util.merge.cli.Engine;
 import com.ibm.util.merge.exception.MergeException;
 
 public class Merge {
@@ -62,7 +63,7 @@ public class Merge {
 	+ "		The default parameter used is idmuCliParm if none is provided.\n"
 	+ "\n"
 	+ "Example\n"
-	+ "java com.ibm.util.merge.cli.Merge my.test. /bigJob --runners 20 \n"
+	+ "java Merge my.test. /bigJob --runners 20 \n"
 	+ "\n"
 	+ "See https://flatballflyer.github.io/IBM-Data-Merge-Utility-CLI/ for more information\n"
 	);
