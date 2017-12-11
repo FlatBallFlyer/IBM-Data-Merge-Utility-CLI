@@ -1,14 +1,14 @@
 # IBM Data Merge Utility v4.0.0 - CLI
 
 ## What Is IDMU-CLI
-The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatballflyer.github.io/IBM-Data-Merge-Utility/) as a Command Line utility
+The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatballflyer.github.io/IBM-Data-Merge-Utility/) as a Command Line utility. If you want to just use the CLI tool, please see the release notes section of the GitHub pages for this project.
 
 ---
 
-## Requirements
+## Developer Requirements
 1. maven package manager - see (https://maven.apache.org/install.html)
 
-## Start Here
+### Start Here
 
 ```
 git clone https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility-CLI.git
@@ -19,11 +19,11 @@ mvn install
 
 ```
 mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
-export CLASSPATH=$(< cp.txt):$(pwd)/target/idmu-cli-4.0.0-SNAPSHOT.jar
+export CLASSPATH=$(< cp.txt):$(pwd)/target/idmu-cli-4.0.2-SNAPSHOT.jar
 
-java com.ibm.util.merge.cli.Merge templateName mergeFolder <options>
+java Merge templateName mergeFolder <options>
 
-ex: java com.ibm.util.merge.cli.Merge root.. . --run --runners 20
+ex: Merge root.. . --run --runners 20
 see src/test/resources/perfTest.sh for some samples
 ```
 ## Comand Line
