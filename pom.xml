@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ibm.util.merge</groupId>
 	<artifactId>idmu-cli</artifactId>
-	<version>4.0.1-SNAPSHOT</version>
+	<version>4.0.1</version>
 	<name>idmu-cli</name>
 	<description>IDMU Command Line</description>
 	<url>http://flatballflyer.github.io/IBM-Data-Merge-Utility-CLI/</url>

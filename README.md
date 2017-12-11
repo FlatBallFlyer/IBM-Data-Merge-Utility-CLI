@@ -1,4 +1,4 @@
-# IBM Data Merge Utility v4.0.0 - CLI
+# IBM Data Merge Utility v4.0.1 - CLI
 
 ## What Is IDMU-CLI
 The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatballflyer.github.io/IBM-Data-Merge-Utility/) as a Command Line utility. If you want to just use the CLI tool, please see the release notes section of the GitHub pages for this project.
