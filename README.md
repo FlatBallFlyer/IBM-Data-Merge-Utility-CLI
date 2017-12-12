@@ -41,10 +41,10 @@ __mergeFolder__
   - payload.txt: Optional default payload
 - And One of the following, if more than one of these exists the first is used.
   - requests.json - all requests in a single json file
-  - payloadFolder - contains request payloads (1 per file) uses default parameters, output file name == input file name 
+  - payloadFolder - contains request payloads (1 per file) uses default parameters, output file name == input file name.output 
   - payloadFile.txt - contains request payloads (1 per line) uses default parameters, output file name == lineXX.output
-  - parametersFolder - contains request parameters (1 per file) uses default payload, output file name == input file name
-  - parametersFile.txt - contains request parameters (1 per file) uses default parameters, output file name == line##.output
+  - parametersFolder - contains request parameters json (1 per file) uses default payload, output file name == input file name.output
+  - parametersFile.txt - contains request parameters (1 per line) uses default parameters, output file name == line##.output
 
 __options__									
 - __- -runners  -r__ &lt;number&gt;
