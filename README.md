@@ -18,23 +18,23 @@ __mergeFolder__
   * config.json: Optional configuration file
   * parameters.json: Optional default parameters
   * payload.txt: Optional default payload
-* And One of the following, if more than one of these exists the first is used.
-  * requests.json - all requests in a single json file
-  * payloadFolder - contains request payloads (1 per file) uses default parameters, output file name == input file name.output 
-  * payloadFile.txt - contains request payloads (1 per line) uses default parameters, output file name == lineXX.output
-  * parametersFolder - contains request parameters json (1 per file) uses default payload, output file name == input file name.output
-  * parametersFile.txt - contains request parameters (1 per line) uses default parameters, output file name == line##.output
+  * And One of the following, if more than one of these exists the first is used.
+    * requests.json - all requests in a single json file
+    * payloadFolder - contains request payloads (1 per file) uses default parameters, output file name == input file name.output 
+    * payloadFile.txt - contains request payloads (1 per line) uses default parameters, output file name == lineXX.output
+    * parametersFolder - contains request parameters json (1 per file) uses default payload, output file name == input file name.output
+    * parametersFile.txt - contains request parameters (1 per line) uses default parameters, output file name == line##.output
 
 __options__									
-  * __--runners  -r__ &lt;number&gt;
-Specify the number of runner threads		
+  * __--runners  -r__ &lt;number&gt; 
+Specify the number of runner threads 
   * __--run__ 
-Start processing without a confirmation prompt		
-  * __--patience__ &lt;minutes&gt;
-Specify a timeout for multi-threaded runners
-  * __--parameter__ &lt;name&gt;
-Specify a parameter name for use with parametersFolder / parametersFile. 
-The default parameter used is "idmuCliParm" if none is provided.
+Start processing without a confirmation prompt 	
+  * __--patience__ &lt;minutes&gt; 
+Specify a timeout for multi-threaded runners 
+  * __--parameter__ &lt;name&gt; 
+Specify a parameter name for use with parametersFolder / parametersFile.  
+The default parameter used is "idmuCliParm" if none is provided. 
 												
 ---
 
