@@ -1,7 +1,7 @@
 # IBM Data Merge Utility v4.0.1 - CLI
 
 ## What Is IDMU-CLI
-The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatballflyer.github.io/IBM-Data-Merge-Utility/) through a Command Line Interface. The IDMU-CLI provides a scalable multi-threaded merge engine that is suited to batch style processing. However, the current implementation of the JDBC Data Provider does not utilize a connection pool and may not perform as well as the JNDI data provider available in the Rest interface for JDBC enrichment actions. If you are looking to use the CLI tool, please see the [release notes](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility-CLI/releases) section of the GitHub pages for this project for instructions.
+The IBM Data Merge Utility CLI exposes the [IBM Data Merge Utility](http://flatballflyer.github.io/IBM-Data-Merge-Utility/) through a Command Line Interface. The IDMU-CLI provides a scalable multi-threaded merge engine that is suited to batch style processing. However, the current implementation of the JDBC Data Provider does not utilize a connection pool and may not perform as well as the JNDI data provider available in the Rest interface. If you are looking to use the CLI tool, please see the [release notes](https://github.com/FlatBallFlyer/IBM-Data-Merge-Utility-CLI/releases) section of the GitHub pages for this project for instructions.
 
 ---
 
