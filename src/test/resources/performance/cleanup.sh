@@ -1,4 +1,7 @@
 rm ./out.tar
+
+rm ./generatePerfData/parameters.json
+
 rm -rf ./perf/payloadFolder
 mkdir  ./perf/payloadFolder
 
