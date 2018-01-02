@@ -1,0 +1,897 @@
+{
+  "templates" : [
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "",
+        "variant" : ""
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Template Upgrade Transformation",
+      "content" : "{\n\t\"templates\": \n\t[\n<bookmark=\"templates\" group=\"test\" template=\"template\">\n\t]\n}",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "Parse Input",
+          "type" : 3,
+          "staticData" : "",
+          "dataSource" : "idmuPayload",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 3,
+          "ifObject" : 1,
+          "ifList" : 1,
+          "dataTarget" : "templates",
+          "dataTargetDelimiter" : "-",
+          "parseFormat" : 3
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "templates-templates",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "template",
+        "variant" : ""
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "A single Template",
+      "content" : "\t\t{\n\t\t\t\"id\": \n\t\t\t{\n\t\t\t\t\"group\": \"<collection>\",\n\t\t\t\t\"name\": \"<name>\",\n\t\t\t\t\"variant\": \"<columnValue>\"\n\t\t\t},\n\t\t\t\"wrapper\": \n\t\t\t{\n\t\t\t\t\"front\": \"{\",\n\t\t\t\t\"back\": \"}\"\n\t\t\t},\n\t\t\t\"description\": \"<description>\",\n\t\t\t\"content\": \"<content>\",\n\t\t\t\"contentType\": 4,\n\t\t\t\"contentDisposition\": 2,\n\t\t\t\"contentEncoding\": 1,\n\t\t\t\"contentFileName\": \"\",\n\t\t\t\"contentRedirectUrl\": \"\",\n\t\t\t\"directives\": \n\t\t\t[\n<bookmark=\"template\" group=\"test\" template=\"directive\" varyby=\"type\">\n\t\t\t]\n\t\t}\n",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 1,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Directives",
+          "dataSource" : "idmuContext-directives",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "0"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Directive 0 - Require (Not Migrated, Replace+Require is default for upgrades)",
+      "content" : "",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : []
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "1"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 1 - Replace Value - Replace Primitive Missing Replace",
+      "content" : "\t{\n\t\t\"type\": 4,\n\t\t\"name\": \"<description>\",\n\t\t\"dataSource\": \"MISSING\",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"processAfter\": false,\n\t\t\"processRequire\": false,\n\t\t\"ifMissing\": 3,\n\t\t\"ifPrimitive\": 1,\n\t\t\"fromValue\": \"<from>\",\n\t\t\"toValue\": \"<to>\",\n\t\t\"ifObject\": 1,\n\t\t\"objectAttrPrimitive\": 1,\n\t\t\"objectAttrList\": 1,\n\t\t\"objectAttrObject\": 1,\n\t\t\"ifList\": 1,\n\t\t\"fromAttribute\": \"\",\n\t\t\"toAttribute\": \"\",\n\t\t\"listAttrMissing\": 1,\n\t\t\"listAttrNotPrimitive\": 1\n\t},\n",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "2"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 2 - Tag Insert - Insert Primitive",
+      "content" : "\t{\n\t\t\"type\": 2,\n\t\t\"name\": \"Migrated from Tag Insert <description>\",\n\t\t\"dataSource\": \"REVIEW REQUIRED<tag data> for condition: <condition> \",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"ifMissing\": 1,\n\t\t\"ifPrimitive\": 4,\n\t\t\"ifOperator\": 1,\n\t\t\"ifValue\": \"<value>\",\n\t\t\"ifObject\": 1,\n\t\t\"ifList\": 3,\n\t\t\"notFirst\": [],\n\t\t\"notLast\": [<bookmark=\"notlast\" group=\"test\" template=\"string\">],\n\t\t\"onlyFirst\": [],\n\t\t\"onlyLast\": [<bookmark=\"onlylast\" group=\"test\" template=\"string\">],\n\t\t\"bookmarkPattern\": \".*\"\n\t},\n",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "idmuContext-notLast",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : "notlast",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "idmuContext-onlyLast",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : "onlylast",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "10"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 10 - Insert Sql - Enrich JDBC + Insert List",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichSql\"><bookmark=\"insert\" group=\"test\" template=\"insertList\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Enrich and Insert Directives",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "11"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 11 - SQL Replace Row - Enrich + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichSql\"><bookmark=\"insert\" group=\"test\" template=\"replaceRow\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Enrich and Insert Directives",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "12"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 12 - SqlReplaceCol - Enrich + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichSql\"><bookmark=\"insert\" group=\"test\" template=\"replaceCol\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "21"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 21 - CSV Insert - Enrich Rest, Parse + Insert",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"insertList\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "22"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 22 - CsvReplaceRow - Parse + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"replaceRow\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "23"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 23 - CsvReplaceCol - Parse + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"replaceCol\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "31"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 31 - HTML Insert - Parse + Insert",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"insert\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "32"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 32 - HTML Replace Row - Parse + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"replaceRow\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "33"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 33 - HtmlReplaceCol - Parse + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"replaceCol\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "directive",
+        "variant" : "34"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Type 34 - HtmlReplaceMarkup - Parse + Replace",
+      "content" : "<bookmark=\"enrich\" group=\"test\" template=\"enrichRest\"><bookmark=\"parse\" group=\"test\" template=\"parse\"><bookmark=\"insert\" group=\"test\" template=\"replaceCol\">",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "type" : 2,
+          "name" : "Insert Directives ",
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : ".*",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "string",
+        "variant" : ""
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "simple string value for string lists",
+      "content" : "<idmuContext><,>",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 3,
+          "ifObject" : 1,
+          "objectAttrPrimitive" : 1,
+          "objectAttrList" : 1,
+          "objectAttrObject" : 1,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "enrichSql",
+        "variant" : "10"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Enrich Sql to LIST_DATA",
+      "content" : "\t{\n\t\t\"type\": 1,\n\t\t\"name\": \"Enrich from Type 10 - <description>\",\n\t\t\"targetDataName\": \"LIST_DATA\",\n\t\t\"targetDataDelimeter\": \"-\",\n\t\t\"enrichClass\": \"com.ibm.util.merge.template.directive.enrich.provider.JdbcProvider\",\n\t\t\"enrichSource\": \"<source>\",\n\t\t\"enrichParameter\": \"\",\n\t\t\"enrichCommand\": \"Select <columns> from <from> where <where>\",\n\t\t\"parseAs\": 4\n\t},",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "insertList",
+        "variant" : "10"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Insert from LIST_DATA",
+      "content" : "\t{\n\t\t\"type\": 2,\n\t\t\"name\": \"Insert<description>\",\n\t\t\"dataSource\": \"LIST_DATA\",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"ifMissing\": 1,\n\t\t\"ifPrimitive\": 1,\n\t\t\"ifOperator\": 1,\n\t\t\"ifValue\": \"\",\n\t\t\"ifObject\": 1,\n\t\t\"ifList\": 3,\n\t\t\"notFirst\": [],\n\t\t\"notLast\": [<bookmark=\"notlast\" group=\"test\" template=\"string\">],\n\t\t\"onlyFirst\": [],\n\t\t\"onlyLast\": [<bookmark=\"onlylast\" group=\"test\" template=\"string\">],\n\t\t\"bookmarkPattern\": \".*\"\n\t}\n",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "idmuContext-notLast",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : "notlast",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "idmuContext-onlyLast",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : "onlylast",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "replaceRow",
+        "variant" : "10"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Replace Row",
+      "content" : "\t{\n\t\t\"type\": 4,\n\t\t\"name\": \"<description>\",\n\t\t\"dataSource\": \"DATA_ROW\",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"processAfter\": false,\n\t\t\"processRequire\": false,\n\t\t\"ifMissing\": 1,\n\t\t\"ifPrimitive\": 1,\n\t\t\"fromValue\": \"\",\n\t\t\"toValue\": \"\",\n\t\t\"ifObject\": 3,\n\t\t\"objectAttrPrimitive\": 3,\n\t\t\"objectAttrList\": 1,\n\t\t\"objectAttrObject\": 1,\n\t\t\"ifList\": 1,\n\t\t\"fromAttribute\": \"\",\n\t\t\"toAttribute\": \"\",\n\t\t\"listAttrMissing\": 1,\n\t\t\"listAttrNotPrimitive\": 1\n\t}\n\n\t{\n\t\t\"type\": 4,\n\t\t\"name\": \"Replace\",\n\t\t\"dataSource\": \"type12\",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"processAfter\": false,\n\t\t\"processRequire\": false,\n\t\t\"ifMissing\": 1,\n\t\t\"ifPrimitive\": 1,\n\t\t\"fromValue\": \"\",\n\t\t\"toValue\": \"\",\n\t\t\"ifObject\": 2,\n\t\t\"objectAttrPrimitive\": 1,\n\t\t\"objectAttrList\": 1,\n\t\t\"objectAttrObject\": 1,\n\t\t\"ifList\": 2,\n\t\t\"fromAttribute\": \"<fromColumn>\",\n\t\t\"toAttribute\": \"<toColumn>\",\n\t\t\"listAttrMissing\": 1,\n\t\t\"listAttrNotPrimitive\": 1\n\t}",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "replaceCol",
+        "variant" : "10"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Replace Column",
+      "content" : "\t{\n\t\t\"type\": 4,\n\t\t\"name\": \"Replace\",\n\t\t\"dataSource\": \"DATA_LIST\",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"processAfter\": false,\n\t\t\"processRequire\": false,\n\t\t\"ifMissing\": 1,\n\t\t\"ifPrimitive\": 1,\n\t\t\"fromValue\": \"\",\n\t\t\"toValue\": \"\",\n\t\t\"ifObject\": 1,\n\t\t\"objectAttrPrimitive\": 1,\n\t\t\"objectAttrList\": 1,\n\t\t\"objectAttrObject\": 1,\n\t\t\"ifList\": 3,\n\t\t\"fromAttribute\": \"<fromColumn>\",\n\t\t\"toAttribute\": \"<toColumn>\",\n\t\t\"listAttrMissing\": 1,\n\t\t\"listAttrNotPrimitive\": 1\n\t}",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "enrichRest",
+        "variant" : "21"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Enrich from Rest Source",
+      "content" : "\t{\n\t\t\"type\": 1,\n\t\t\"name\": \"<description> - Enrich Rest - TODO Insert IF Url Exists\",\n\t\t\"targetDataName\": \"PRIMITIVE_DATA\",\n\t\t\"targetDataDelimeter\": \"-\",\n\t\t\"enrichClass\": \"com.ibm.util.merge.template.directive.enrich.provider.Rest\",\n\t\t\"enrichSource\": \"\",\n\t\t\"enrichParameter\": \"\",\n\t\t\"enrichCommand\": \"<url>\",\n\t\t\"parseAs\": 4\n\t},",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        }
+      ]
+    },
+    {
+      "id" : {
+        "group" : "test",
+        "name" : "parse",
+        "variant" : "21"
+      },
+      "wrapper" : {
+        "front" : "<",
+        "back" : ">"
+      },
+      "description" : "Parse CSV from DATA_PRIMITIVE",
+      "content" : "\t{\n\t\t\"type\": 3,\n\t\t\"name\": \"<description>\",\n\t\t\"staticData\": \"<static>\",\n\t\t\"parseFormat\": 1,\n\t\t\"dataSource\": \"DATA_PRIMITIVE\",\n\t\t\"dataDelimeter\": \"-\",\n\t\t\"dataTarget\": \"\",\n\t\t\"dataTargetDelimiter\": \"-\",\n\t\t\"ifMissing\": 1,\n\t\t\"ifPrimitive\": 3,\n\t\t\"ifObject\": 1,\n\t\t\"ifList\": 1\n\t}",
+      "contentType" : 2,
+      "contentDisposition" : 2,
+      "contentEncoding" : 4,
+      "contentFileName" : "",
+      "contentRedirectUrl" : "",
+      "directives" : [
+        {
+          "name" : "replace values",
+          "type" : 4,
+          "dataSource" : "idmuContext",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 3,
+          "objectAttrPrimitive" : 3,
+          "objectAttrList" : 2,
+          "objectAttrObject" : 2,
+          "ifList" : 1,
+          "listAttrMissing" : 1,
+          "listAttrNotPrimitive" : 1,
+          "processAfter" : true,
+          "processRequire" : true
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "idmuContext-notLast",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : "notlast",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        },
+        {
+          "type" : 2,
+          "name" : "Insert Subtemplates",
+          "dataSource" : "idmuContext-onlyLast",
+          "dataDelimeter" : "-",
+          "ifMissing" : 1,
+          "ifPrimitive" : 1,
+          "ifObject" : 1,
+          "ifList" : 3,
+          "bookmarkPattern" : "onlylast",
+          "notFirst" : [],
+          "notLast" : [],
+          "onlyFirst" : [],
+          "onlyLast" : []
+        }
+      ]
+    }
+  ]
+}

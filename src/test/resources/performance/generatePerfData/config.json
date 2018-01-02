@@ -1,8 +1,3 @@
 {
-  "tempFolder" : "./",
-  "envVars" : {
-    "mySqlTest.URI" : "jdbc:mysql://localhost:3306",
-    "mySqlTest.USER" : "root",
-    "mySqlTest.PW" : "drowssap"
-  }
+  "tempFolder" : "./"
 }
